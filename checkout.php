@@ -77,7 +77,7 @@ $datos = array(
           </form>
 
             <!-- payment form -->
-          <div class="kr-embedded" style="display: none;" kr-form-token="<?= $formToken ?>">
+          <div class="kr-embedded" style="display: none;" kr-popin kr-form-token="<?= $formToken ?>">
 
             <!-- payment form fields -->
             <div class="kr-pan"></div>
