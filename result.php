@@ -1,17 +1,22 @@
 <?php
 require_once "keys.example.php";
 
-$response = formToken();
+if (empty($_POST)) {
+  throw new Exception("No post data received!");
+}
 
-$formToken = $response["answer"]["formToken"];
+if (!checkHash()) {
+  throw new Exception("Invalid signature");
+}
+
+$answer = json_decode($_POST["kr-answer"], true);
 
 ?>
-
 <!DOCTYPE html>
 <html>
 
 <head>
-  <title>Form Token</title>
+  <title>Resultado de pago</title>
   <link rel='stylesheet' href='css/style.css' />
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -22,17 +27,6 @@ $formToken = $response["answer"]["formToken"];
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-  <script type="text/javascript"
-    src="https://static.micuentaweb.pe/static/js/krypton-client/V4.0/stable/kr-payment-form.min.js"
-    kr-public-key="<?= PUBLIC_KEY ?>"
-    kr-post-url-success="result.php" kr-language="es-Es">
-  </script>
-
-  <link rel="stylesheet" href="https://static.micuentaweb.pe/static/js/krypton-client/V4.0/ext/classic.css">
-  <script type="text/javascript" src="https://static.micuentaweb.pe/static/js/krypton-client/V4.0/ext/classic.js">
-  </script>
-
 </head>
 <body>
   <nav class="navbar bg-primary" style="background-color: #FF2D46!important;">
@@ -44,19 +38,35 @@ $formToken = $response["answer"]["formToken"];
   <div class="row">
     <div class="col-md-3"></div>
     <div class="center-column col-md-6">
-      <section class="payment-form">
-        <div class="row">
-          <li>Pago con tarjeta de crédito/débito</li>
-          <img src="https://github.com/izipay-pe/Imagenes/blob/main/logo_tarjetas_aceptadas/logo-tarjetas-aceptadas-351x42.png?raw=true" alt="Tarjetas aceptadas" style="width: 200px;">
-        </div>
+      <section class="result-form">
+        <h2>Resultado de pago:</h2>
         <hr>
-        <div id="micuentawebstd_rest_wrapper">
-          <div class="kr-embedded" kr-popin kr-form-token="<?= $formToken; ?>"></div>
-        </div>
+        <p><strong>Estado:</strong> <?= $answer['orderStatus'] ?></p>
+        <p><strong>Monto:</strong> S/. <?= number_format($answer['orderDetails']["orderTotalAmount"] / 100, 2)  ?></p>
+        <p><strong>Order-id:</strong> <?= $answer['orderDetails']["orderId"]  ?></p>
+        <hr>
+        <details open>
+          <summary>
+            <h2>Respuesta recibida del servidor:</h2>
+          </summary>
+          <pre><?php echo json_encode($_POST, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE); ?></pre>
+        </details>
+        <hr>
+        <details>
+          <summary>
+            <h2>kr-answer:</h2>
+          </summary>
+          <pre><?php echo json_encode($answer, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE); ?></pre>
+        </details>
+        <hr>
+        <form action="/" method="get">
+          <button class="btn btn-primary">Volver a probar</button>
+        </form>
       </section>
     </div>
     <div class="col-md-3"></div>
   </div>
 </section>
 </body>
+
 </html>
