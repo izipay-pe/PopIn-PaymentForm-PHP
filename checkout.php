@@ -21,12 +21,14 @@ $formToken = formToken();
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+  <!-- Libreria JS de la pasarela, debe incluir la clave pública -->
   <script type="text/javascript"
     src="https://static.micuentaweb.pe/static/js/krypton-client/V4.0/stable/kr-payment-form.min.js"
     kr-public-key="<?= PUBLIC_KEY ?>"
     kr-post-url-success="result.php" kr-language="es-Es">
   </script>
 
+  <!-- Estilos de la pasarela de pagos -->
   <link rel="stylesheet" href="https://static.micuentaweb.pe/static/js/krypton-client/V4.0/ext/classic.css">
   <script type="text/javascript" src="https://static.micuentaweb.pe/static/js/krypton-client/V4.0/ext/classic.js">
   </script>
@@ -48,7 +50,9 @@ $formToken = formToken();
         </div>
         <hr>
         <div id="micuentawebstd_rest_wrapper">
+          <!-- HTML para incrustar pasarela de pagos -->
           <div class="kr-embedded" kr-popin kr-form-token="<?= $formToken; ?>"></div>
+          <!---->
         </div>
       </section>
     </div>
