@@ -1,5 +1,5 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif!important;
   background-color: #ececec!important;
 }
 
@@ -53,8 +53,8 @@ li {
   }
 
 .form-control {
-  font-size: 0.8rem;
-  padding: 5px 10px;
+  font-size: 0.8rem!important;
+  padding: 5px 10px!important;
   height: auto;
 }
   
