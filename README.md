@@ -2,7 +2,7 @@
   <img src="https://github.com/izipay-pe/Imagenes/blob/main/logos_izipay/logo-izipay-banner-1140x100.png?raw=true" alt="Formulario" width=100%/>
 </p>
 
-# Popin-PaymentForm-PHP
+# Popin-PaymentForm-Php
 
 ## Índice
 
@@ -77,7 +77,7 @@ define("HMAC_SHA256","~ CHANGE_ME_HMAC_SHA_256 ~");
 
 1. Mover el proyecto y descomprimirlo en la carpeta htdocs en la ruta de instalación de Xampp: `C://xampp/htdocs/[proyecto_php]`
 
-2.  Abrir el navegador web(Chrome, Mozilla, Safari, etc) con el puerto 80 que abrió xampp : `http://localhost:80/[nombre_de_proyecto]` y realizar una compra de prueba.
+2.  Abrir el navegador web(Chrome, Mozilla, Safari, etc) con el puerto 80 que abrió xampp : `http://localhost/[nombre_de_proyecto]`
 
 
 ## 🔗4. Pasos de integración
