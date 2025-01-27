@@ -43,7 +43,7 @@ $answer = json_decode($_POST["kr-answer"], true);
         <h2>Resultado de pago:</h2>
         <hr>
         <p><strong>Estado:</strong> <?= $answer['orderStatus'] ?></p>
-        <p><strong>Monto:</strong> S/. <?= number_format($answer['orderDetails']["orderTotalAmount"] / 100, 2)  ?></p>
+        <p><strong>Monto:</strong> <?= $answer['orderDetails']["orderCurrency"] ?>. <?= number_format($answer['orderDetails']["orderTotalAmount"] / 100, 2)  ?></p>
         <p><strong>Order-id:</strong> <?= $answer['orderDetails']["orderId"]  ?></p>
         <hr>
         <details open>
