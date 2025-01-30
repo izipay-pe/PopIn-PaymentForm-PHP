@@ -51,7 +51,7 @@ Xampp, servidor web local multiplataforma que contiene los intérpretes para los
 
 ### Clonar el proyecto
 ```sh
-git clone https://github.com/izipay-pe/Popin-PaymentForm-PHP.git
+git clone https://github.com/izipay-pe/Popin-PaymentForm-Php.git
 ``` 
 
 ### Datos de conexión 
